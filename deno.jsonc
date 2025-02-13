@@ -1,0 +1,33 @@
+{
+  "name": "@fairfox/deno-esbuild",
+  "version": "0.0.20",
+  "exports": "./src/mod.ts",
+  "publish": {
+    "exclude": [".vsCode", "examples"]
+  },
+  "compilerOptions": {
+    "strict": true,
+    "useUnknownInCatchVariables": true
+  },
+  "lint": {
+    "include": ["src/"],
+    "rules": {
+      "tags": ["recommended"],
+      "include": ["no-non-null-assertion"]
+    }
+  },
+  "fmt": {
+    "include": ["src/"],
+    "semiColons": false,
+    "singleQuote": true
+  },
+  "nodeModulesDir": "none",
+  "lock": false,
+  "test": {
+    "include": ["src/"]
+  },
+  "tasks": {
+    "build": "deno run --allow-read --allow-env --allow-run --allow-write --allow-net build.ts",
+    "fmt": "deno fmt ."
+  }
+}

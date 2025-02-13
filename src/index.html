@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>run `npx serve`</h1>
+    <script type="module">
+      import * as esbuild from 'https://unpkg.com/esbuild-wasm@0.24.2/esm/browser.min.js'
+      import { remoteFetchPlugin } from './js/remote-fetch-plugin.js'
+      await esbuild.initialize({
+        wasmURL: 'https://unpkg.com/esbuild-wasm@0.24.2/esbuild.wasm',
+        worker: true,
+      })
+      try {
+        const cfg = {
+          entryPoints: ['http://localhost:3000/configs.ts'],
+          platform: 'neutral',
+          charset: 'utf8',
+          bundle: true,
+          minify: true,
+          publicPath: '/',
+          format: 'esm',
+          allowOverwrite: true,
+          treeShaking: true,
+          splitting: true,
+          outdir: './build',
+          write: false,
+          sourcemap: 'linked',
+          pure: ['console.debug', 'console.assert'],
+          // SEE: https://browsersl.ist/#q=cover+95%25+and+supports+wasm+and+supports+serviceworkers+and+supports+indexeddb2
+          target: ['chrome89', 'firefox106', 'safari15'],
+          assetNames: '[name]', // this means that the .woff2 files will not have a hash so it is easy to reference them in the .html
+          plugins: [remoteFetchPlugin()],
+        }
+        const result = await esbuild.build(cfg)
+
+        if (result?.outputFiles === undefined) {
+          throw new Error('result.outputFiles should be defined')
+        }
+
+        for (const out of result.outputFiles) {
+          const fileName = out.path.split('/').pop() || 'undefined.js'
+          const ext = fileName.split('.').pop()
+          const path = `/${fileName}`
+          if (ext === 'css') {
+            const styleEl = document.createElement('style')
+            styleEl.type = 'text/css'
+            styleEl.textContent = out.text
+            document.head.appendChild(styleEl)
+          } else if (ext === 'js' || ext === 'mjs') {
+            const scriptEl = document.createElement('script')
+            scriptEl.type = 'module'
+            scriptEl.textContent = out.text
+            document.body.appendChild(scriptEl)
+          }
+        }
+      } finally {
+        await esbuild.stop()
+      }
+    </script>
+  </body>
+</html>
