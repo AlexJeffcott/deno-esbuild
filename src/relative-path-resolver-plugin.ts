@@ -1,4 +1,4 @@
-import * as path from 'jsr:@std/path@1.0.6'
+import * as path from 'jsr:@std/path@1.0.8'
 import {
   type OnResolveArgs,
   type OnResolveResult,

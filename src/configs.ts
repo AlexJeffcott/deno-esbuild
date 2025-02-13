@@ -2,8 +2,8 @@ import { importMapPlugin } from './import-map-plugin.ts'
 import { remoteFetchPlugin } from './remote-fetch-plugin.ts'
 import { localFileLoaderPlugin } from './local-file-loader-plugin.ts'
 // import { relativePathResolverPlugin } from './relative-path-resolver-plugin.ts'
-import * as path from 'jsr:@std/path@1.0.6'
-import { load } from 'jsr:@std/dotenv@^0.225.2'
+import * as path from 'jsr:@std/path@1.0.8'
+import { load } from 'jsr:@std/dotenv@0.225.3'
 import { type BuildOptions } from './types.d.ts'
 
 function generateBuildId() {

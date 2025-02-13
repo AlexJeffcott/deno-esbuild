@@ -1,15 +1,9 @@
-import * as path from 'jsr:@std/path@1.0.6'
+import * as path from 'jsr:@std/path@1.0.8'
 import {
-  type Build,
-  type BuildOptions,
-  type BuildResult,
-  type Initialize,
-  type InitializeOptions,
   type OnResolveArgs,
   type OnResolveResult,
   type Plugin,
   type PluginBuild,
-  type Stop,
 } from './types.d.ts'
 
 type Config = { importMapFileUrl: URL }

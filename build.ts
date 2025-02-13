@@ -1,6 +1,6 @@
 import { bundle } from './src/bundle.ts'
 import { remoteFetchPlugin } from './src/remote-fetch-plugin.ts'
-import * as esbuild from 'npm:esbuild@0.24.2'
+import * as esbuild from 'npm:esbuild@0.25.0'
 
 bundle(
   {

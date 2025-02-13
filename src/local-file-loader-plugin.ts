@@ -1,4 +1,4 @@
-import * as paths from 'jsr:@std/path@1.0.6'
+import * as paths from 'jsr:@std/path@1.0.8'
 import {
   type Loader,
   type OnLoadArgs,

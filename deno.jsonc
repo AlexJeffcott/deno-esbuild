@@ -1,6 +1,6 @@
 {
   "name": "@fairfox/deno-esbuild",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "exports": "./src/mod.ts",
   "publish": {
     "exclude": [".vsCode", "examples"]

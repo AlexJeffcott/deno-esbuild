@@ -6,7 +6,7 @@ import {
   type InitializeOptions,
   type Stop,
 } from './types.d.ts'
-import { delay } from 'jsr:@std/async@1.0.9'
+import { delay } from 'jsr:@std/async@1.0.10'
 
 type BundleResult = [
   (opts: {

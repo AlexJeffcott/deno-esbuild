@@ -1,5 +1,5 @@
-import esbuildWasm from 'npm:esbuild-wasm@0.24.2/lib/main.d.ts'
-import esbuild from 'npm:esbuild@0.24.2/lib/main.d.ts'
+import esbuildWasm from 'npm:esbuild-wasm@0.25.0/lib/main.d.ts'
+import esbuild from 'npm:esbuild@0.25.0/lib/main.d.ts'
 
 export type OnLoadArgs = esbuild.OnLoadArgs | esbuildWasm.OnLoadArgs
 export type OnLoadResult = esbuild.OnLoadResult | esbuildWasm.OnLoadResult
